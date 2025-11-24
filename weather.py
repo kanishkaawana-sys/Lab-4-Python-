@@ -11,27 +11,27 @@ def task1_load_and_inspect_data():
 
     
     if not os.path.exists(file_path):
-        print("\n❌ ERROR: 'weather_data.csv' is missing!")
-        print("👉 Place 'weather_data.csv' in the SAME folder as lab4.py\n")
+        print("\n ERROR: 'weather_data.csv' is missing!")
+        print(" Place 'weather_data.csv' in the SAME folder as lab4.py\n")
         return None
 
     try:
         df = pd.read_csv(file_path)
     except pd.errors.EmptyDataError:
-        print("\n❌ ERROR: weather_data.csv is empty!")
+        print("\n ERROR: weather_data.csv is empty!")
         return None
 
     print("\n===================")
     print(" TASK 1: WEATHER DATA LOADED")
     print("===================\n")
 
-    print("🔹 First 5 rows:")
+    print(" First 5 rows:")
     print(df.head(), "\n")
 
-    print("🔹 Basic Info:")
+    print(" Basic Info:")
     print(df.info(), "\n")
 
-    print("🔹 Statistical Summary:")
+    print(" Statistical Summary:")
     print(df.describe(), "\n")
 
     return df
@@ -43,13 +43,13 @@ def task2_missing_values(df):
     print(" TASK 2: MISSING VALUE HANDLING")
     print("===================\n")
 
-    print("🔹 Missing values per column:")
+    print(" Missing values per column:")
     print(df.isnull().sum(), "\n")
 
     # Fill numeric missing values with mean
     df_filled = df.fillna(df.mean(numeric_only=True))
 
-    print("✅ Missing values handled successfully using column-wise mean.\n")
+    print(" Missing values handled successfully using column-wise mean.\n")
     return df_filled
 
 
@@ -60,16 +60,16 @@ def task3_filter_temperature(df):
     print("===================\n")
 
     if "Temperature" not in df.columns:
-        print("❌ ERROR: 'Temperature' column not found in weather_data.csv")
+        print(" ERROR: 'Temperature' column not found in weather_data.csv")
         return df
 
     avg_temp = df["Temperature"].mean()
 
-    print(f"🔹 Average Temperature = {avg_temp:.2f}")
+    print(f" Average Temperature = {avg_temp:.2f}")
 
     filtered_df = df[df["Temperature"] > avg_temp]
 
-    print("\n🔹 Days with ABOVE AVERAGE temperature:")
+    print("\n Days with ABOVE AVERAGE temperature:")
     print(filtered_df.head(), "\n")
 
     return filtered_df
@@ -90,9 +90,9 @@ def task4_visualizations(df):
         plt.ylabel("Temperature (°C)")
         plt.grid(True)
         plt.show()
-        print("📈 Temperature line plot displayed.\n")
+        print(" Temperature line plot displayed.\n")
     else:
-        print("❌ 'Temperature' column missing – skipping temperature plot.\n")
+        print(" 'Temperature' column missing – skipping temperature plot.\n")
 
     
     if "Rainfall" in df.columns:
@@ -103,9 +103,9 @@ def task4_visualizations(df):
         plt.ylabel("Rainfall (mm)")
         plt.grid(True)
         plt.show()
-        print("🌧 Rainfall bar chart displayed.\n")
+        print(" Rainfall bar chart displayed.\n")
     else:
-        print("❌ 'Rainfall' column missing – skipping rainfall plot.\n")
+        print(" 'Rainfall' column missing – skipping rainfall plot.\n")
 
 
 
@@ -117,4 +117,5 @@ if _name_ == "_main_":
         filtered_df = task3_filter_temperature(df)
         task4_visualizations(df)
 
-    print("\n🎯 WEATHER DATA ANALYSIS COMPLETED SUCCESSFULLY!\n")
+
+    print("\n WEATHER DATA ANALYSIS COMPLETED SUCCESSFULLY!\n")
